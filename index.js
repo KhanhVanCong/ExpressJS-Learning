@@ -18,7 +18,6 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 app.get('/', (request, response) => {
     response.render('index', {
-
         name: "Hello Coders.Tokyo"
     });
 });
