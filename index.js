@@ -5,25 +5,12 @@ var low = require('lowdb');
 var FileSync = require('lowdb/adapters/FileSync');
 var adapter = new FileSync('db.json');
 var db = low(adapter);
+var shortid = require('shortid');
 var port = 3000;
 
 
 db.defaults({ users: [] })
   .write()
-var users = [
-    {
-        "name": "Khanh",
-        "age" : 25
-    },
-    {
-        "name": "Van",
-        "age" : 25
-    },
-    {
-        "name": "Yen",
-        "age" : 25
-    }
-]
 
 
 app.set('view engine', 'pug');
@@ -40,6 +27,7 @@ app.get('/', (request, response) => {
     });
 });
 app.get('/users', (req, res) => {
+    console.log(db.get('users').value());
     res.render('users/index', {
         'users': db.get('users').value()
     })
@@ -58,7 +46,20 @@ app.get('/users/create', (req, res)=> {
     res.render('users/create')
 })
 
+app.get('/users/:id', (req, res) => {
+    var id = req.params.id;
+    if(!isNaN(req.params.id))
+    {
+        id = parseInt(req.params.id);
+    } 
+    var user = db.get('users').find({id: id}).value();
+    res.render('users/view', {
+        user: user
+    });
+})
+
 app.post('/users/create', (req, res) => {
+    req.body.id = shortid.generate();
     db.get('users').push(req.body).write();
     res.redirect('/users')
 })
