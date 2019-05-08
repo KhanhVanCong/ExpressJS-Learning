@@ -1,18 +1,22 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var userRoutes = require('./routes/user.route'); 
+
+var userRoutes = require('./routes/user.route');
+var authRoutes = require('./routes/auth.route');
+
+var authMiddileware = require('./middlewares/auth.middleware');
+
+var cookieParser = require('cookie-parser') 
 
 var port = 3000;
 var app = express();
-
-
-
 
 
 app.set('view engine', 'pug');
 app.set('views', './views');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(cookieParser());
 
 app.use(express.static('public'));
 
@@ -22,7 +26,8 @@ app.get('/', (request, response) => {
     });
 });
 
-app.use('/users', userRoutes)
+app.use('/users', authMiddileware.requireAuth, userRoutes);
+app.use('/auth', authRoutes);
 
 
 app.listen(port, () => console.log('Server listening on port 3000'));
