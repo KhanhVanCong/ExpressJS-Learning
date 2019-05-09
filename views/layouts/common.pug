@@ -14,6 +14,14 @@ html
                             a(href="/", class="nav-link")| Home
                         li(class="nav-item")
                             a(href="/users", class="nav-link")| Users
+                        li(class="nav-item")
+                            a(href="/products", class="nav-link")| Products
+                        li(class="nav-item")
+                            if(countCart)
+                                a(href="/cart", class="nav-link")| Cart
+                                    span= " (" + countCart + ")"
+                            else
+                                a(href="/cart", class="nav-link")| Cart
                 if(user)
                     p= user.name
                 

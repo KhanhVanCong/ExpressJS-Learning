@@ -3,6 +3,13 @@ var db = require('../db');
 
 
 module.exports.showAllProduct = (req, res) => {
+    var sessionId = req.signedCookies.sessionId;
+    var allCart = db.get('sessions').find({ id: sessionId}).get('cart').value();
+    var countCart = 0;
+    for(let item in allCart)
+    {
+        countCart += allCart[item];      
+    }
     var page = parseInt(req.query.page) || 1;
     var perPage = 8;
     var start = (page-1) * perPage;
@@ -89,6 +96,7 @@ module.exports.showAllProduct = (req, res) => {
         endPage: countAllPages,
         allPagesShow: allPagesShow,
         dotAfter: dotAfter,   
-        dotBefore: dotBefore   
+        dotBefore: dotBefore,
+        countCart: countCart   
     })
 };

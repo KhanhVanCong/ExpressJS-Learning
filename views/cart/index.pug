@@ -1,0 +1,17 @@
+extends ../layouts/common
+
+block content
+    h1 
+        span.mr-3 Cart
+    
+    table.table
+        tr
+            th Name
+            th Amount
+        each item in arrCart
+            tr
+                td= item.name
+                td= item.count
+
+
+    
