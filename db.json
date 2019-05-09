@@ -31,6 +31,29 @@
       "id": "j8KeP4tnF",
       "email": "info@khanhdayne.me",
       "password": "e10adc3949ba59abbe56e057f20f883e"
+    },
+    {
+      "name": "Tom",
+      "phone": "098228123",
+      "id": "GGG69JvoR"
+    },
+    {
+      "name": "Micheal",
+      "phone": "0828291",
+      "id": "cMfNeuH_e",
+      "avatar": "uploads/4bee41b306b88704d9beb8acb01edf59"
+    },
+    {
+      "name": "Beckham",
+      "phone": "02193128",
+      "id": "WRQHZIKYL",
+      "avatar": "uploads/38a6b0e752e6f9fc386c4d97886687dd"
+    },
+    {
+      "name": "Susan",
+      "phone": "019239",
+      "id": "cPEsHI-xW",
+      "avatar": "uploads/e3c654e5f994a57db95128a021697735"
     }
   ],
   "products": [
