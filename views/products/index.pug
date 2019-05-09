@@ -1,0 +1,67 @@
+extends ../layouts/common
+
+block content
+    h1 
+        span.mr-3 Products
+
+    .d-flex.align-items-center       
+        form.ml-auto(action="/products/search", method="GET", class="d-flex")
+            input(type="text", name="q", value= keyword, class="form-control")
+            button(class="btn btn-primary ml-2") Search
+    div.d-flex.align-items-center.flex-wrap.align-top.justify-content-between
+        each product in products
+            .card.mb-2(style='width: 16.5rem')
+                img(src=product.image, alt="")
+                .card-body
+                    h5.card-title= product.name
+                    p.card-text= product.description
+                    a.btn.btn-primary(href="#")| Add to cart
+    nav
+        ul.pagination
+            if(pageNow === 1)
+                li.page-item.disabled
+                    a.page-link(href="#")| Previous
+            else          
+                li.page-item
+                    a.page-link(href="/products?page=" + pagePrev)| Previous
+            if(dotBefore)
+                li.page-item
+                    a.page-link(href="/products?page=1")| ...
+            each item in allPagesShow
+                if(pageNow === item)
+                    li.page-item.active
+                        a.page-link(href="/products?page="+ item)=item
+                else
+                    li.page-item
+                        a.page-link(href="/products?page="+ item)=item
+            if(dotAfter)
+                li.page-item
+                    a.page-link(href="/products?page=" + endPage)| ...
+            if(pageNow === endPage)
+                li.page-item.disabled
+                    a.page-link(href="#")| Next
+            else
+                li.page-item
+                    a.page-link(href="/products?page=" + pageNext)| Next
+        //- ul.d-inline-flex.align-items-center.flex-wrap.list-unstyled.align-top.justify-content-between
+        //-     each product in products
+        //-         li(class="flex-custom mb-2 rounded border border-dark pb-2")
+        //-             img(src=product.image, alt="")
+        //-             div.p-3
+        //-                 h4= product.name
+        //-                 p.text-justify= product.description
+        //-                 a.btn.btn-primary(href="#")| Add to cart
+
+    //- table.table
+    //-     tr
+    //-         th Name
+    //-         th Phone
+    //-         th Actions
+    //-     each user in users
+    //-         tr
+    //-             td= user.name
+    //-             td= user.phone
+    //-             td
+    //-                 a.btn.btn-light(href='/users/' + user.id) View
+
+    

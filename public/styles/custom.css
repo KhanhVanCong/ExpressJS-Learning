@@ -1,1 +1,9 @@
 /* CSS Style */
+.flex-custom {
+    flex: 0 0 21%;
+}
+
+/* .flex-custom img {
+    max-width: 200px;
+    width: 100%;
+} */

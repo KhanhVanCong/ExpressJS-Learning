@@ -14,6 +14,9 @@ html
                             a(href="/", class="nav-link")| Home
                         li(class="nav-item")
                             a(href="/users", class="nav-link")| Users
+                if(user)
+                    p= user.name
+                
         .container.pt-5
             block content
         block footer
