@@ -3,7 +3,7 @@ var router = express.Router();
 var controller = require('../controllers/product.controller');
 
 
-// router.get('/', controller.showAllProduct);
-router.get('/', controller.showAllProductMongoose);
+router.get('/', controller.apiAllProducts);
+router.post('/', controller.create);
 
 module.exports = router
